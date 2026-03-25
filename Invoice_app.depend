@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1773277366 source:g:\invoiceapp\invoice_app\startbilling.c
+	<stdio.h>
+	<stdlib.h>
+	"customer.h"
+
+1773277366 g:\invoiceapp\invoice_app\customer.h
+
