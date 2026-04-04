@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "customer.h"
-
+#include "product.h"
 int main()
 {
     int choice;
@@ -16,7 +16,8 @@ int main()
         printf("\n1. Customer");
         printf("\n2. Invoice");
         printf("\n3. Reports");
-        printf("\n4. Exit");
+        printf("\n4. product");
+        printf("\n5. Exit");
         printf("\n------------------------------");
         printf("\nEnter your choice: ");
 
@@ -44,6 +45,11 @@ int main()
             break;
 
         case 4:
+            product_menu();
+
+            break;
+
+        case 5:
             printf("\nExiting program...\n");
             exit(0);
 
@@ -51,7 +57,7 @@ int main()
             printf("\nInvalid choice! Please try again.\n");
         }
 
-    } while (choice != 4);
+    } while (choice != 5);
 
     return 0;
 }

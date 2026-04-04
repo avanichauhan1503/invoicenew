@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "customer.h"
+#include "product.h"
 
 void customer_menu()
 {
     int choice;
 do{
-	//system("cls"); 
+	//system("cls");
     printf("\n        CUSTOMER MENU");
     printf("\n==============================");
     printf("\n1. Create Customer");
@@ -21,7 +22,7 @@ do{
     {
     case 1:
         create_customer();
-		
+
         break;
 
     case 2:
@@ -41,62 +42,71 @@ do{
                 printf("\nInvalid choice\n");
         }
 		}
-		
+
 		while(choice!=5);
 }
 
-		
-		void create_customer()
-{
-   //storing customer details using scanf to take inputs
-		
-	
-    char name[50];
-    char phone[15];
-    char city[20];
-
-    printf("Enter your name: ");
-    scanf("%s", name);    
-
-    printf("Enter your mobile no.: ");
-    scanf("%s", phone);   
-    printf("Enter your city name: ");
-    scanf("%s", city);   
-
-}
-
-void list_customer()
-{
-    printf("\n[List customer not implemented yet]");
-}
-
-void modify_customer()
-{
-    printf("\n[Modify customer not implemented yet]");
-}
-
-void export_customer()
-{
-    printf("\n[Export customer not implemented yet]");
-}
+#include <stdio.h>
+#include <stdlib.h>
 
 
-    default:
-        printf("\nInvalid choice");
-    }
-	
-	}
-	while(choice!=5); ////Loop
-}
 void create_customer()
 {
-    printf("\n[Create customer not implemented yet]");
-	
+  FILE *fp;
+
+    char name[30];
+    char city[30];
+    char phone[15];
+
+    fp = fopen("customers.bin", "a");
+
+  if(fp == NULL)
+    {
+        printf("File could not be opened\n");
+           return;
+    }
+
+    printf("Enter Customer Name: ");
+      scanf("%s", name);
+
+    printf("Enter City: ");
+      scanf("%s", city);
+
+    printf("Enter Phone Number: ");
+     scanf("%s", phone);
+
+    fprintf(fp, "%s %s %s\n", name, city, phone);
+
+    fclose(fp);
+
+    printf("Customer saved successfully!\n");
 }
 
 void list_customer()
 {
-    printf("\n[List customer not implemented yet]");
+    FILE *fp;
+
+    char name[30];
+    char city[30];
+    char phone[15];
+
+   fp = fopen("customers.bin", "r");
+
+  if(fp == NULL)
+    {
+        printf("No customer records found.\n");
+        return;
+    }
+
+    printf("\nName\tCity\tPhone");
+    printf("\n---------------------------\n");
+
+  while(fscanf(fp,"%s %s %s",name,city,phone)!=EOF)
+    {
+        printf("%s\t%s\t%s\n",name,city,phone);
+    }
+
+       fclose(fp);
 }
 
 void modify_customer()
@@ -108,4 +118,4 @@ void export_customer()
 {
     printf("\n[Export customer not implemented yet]");
 }
- 
+
