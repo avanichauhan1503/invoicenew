@@ -6,5 +6,6 @@ we have
 2. Products
 3. Invoices
 4. Reports.
-it is console applicatino compiled for Windows 10/11 .
+
+it is console application compiled for Windows 10/11 .
 
