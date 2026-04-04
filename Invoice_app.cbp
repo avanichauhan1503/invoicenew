@@ -10,7 +10,10 @@
 				<Option output="bin/Debug/Invoice_app" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
-				<Option compiler="null" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-std=c11" />
+				</Compiler>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/Invoice_app" prefix_auto="1" extension_auto="1" />
@@ -23,12 +26,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="customer.h" />
-		<Unit filename="customermenue.c">
+		<Unit filename="product.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="invoice.c">
-			<Option compilerVar="CC" />
-		</Unit>
+		<Unit filename="product.h" />
 		<Unit filename="startbilling.c">
 			<Option compilerVar="CC" />
 		</Unit>
