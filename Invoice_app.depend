@@ -6,10 +6,11 @@
 
 1773277366 g:\invoiceapp\invoice_app\customer.h
 
-1774512570 source:d:\workspacec\inovoice new\invoicenew\startbilling.c
+1775282369 source:d:\workspacec\inovoice new\invoicenew\startbilling.c
 	<stdio.h>
 	<stdlib.h>
 	"customer.h"
+	"product.h"
 
 1774512570 d:\workspacec\inovoice new\invoicenew\customer.h
 

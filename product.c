@@ -90,12 +90,78 @@ void create_product()
 }
 void list_product()
 {
-    printf("\n[Modify customer not implemented yet]");
+    {
+    struct product prod;
+    FILE *file = fopen("product.bin", "rb");
+
+    if (file == NULL) {
+        perror("Error opening file for reading");
+        return;
+    }
+
+    printf("\n-- Registered product List \n");
+    printf("%-20s | %-20s | %-15s | %-15s\n", "Name", "rate", "Code", "tax");
+    printf("--------------------------------------------------------------------------\n");
+
+
+    while (fread(&prod, sizeof(struct product), 1, file) == 1) {
+        printf("%-20s | %-20s | %-15s | %-15s\n",
+               prod.name,
+               prod.rate,
+               prod.code,
+               prod.tax);
+    }
+
+    printf("--------------------------------------------------------------------------\n");
+
+    fclose(file);
+}
 }
 void remove_product()
 {
-    printf("\n[Modify customer not implemented yet]");
+   struct product prod;
+    char target_name[50];
+    int found = 0;
+    int c;
+
+    // 1. Clear buffer and get name to delete
+    while ((c = getchar()) != '\n' && c != EOF);
+    printf("Enter the name of the product to delete: ");
+    fgets(target_name, sizeof(target_name), stdin);
+    target_name[strcspn(target_name, "\n")] = 0;
+
+    FILE *file = fopen("customers.bin", "rb");
+    FILE *temp = fopen("temp.bin", "wb");
+
+    if (file == NULL || temp == NULL) {
+        perror("Error opening files");
+        return;
+    }
+
+    // 2. Filter records
+    while (fread(&prod, sizeof(struct product), 1, file) == 1) {
+        if (strcmp(prod.name, target_name) == 0) {
+            found = 1;
+            printf("Record for '%s' found and removed.\n", target_name);
+        } else {
+            fwrite(&prod, sizeof(struct product), 1, temp);
+        }
+    }
+
+    fclose(file);
+    fclose(temp);
+
+    // 3. Swap files
+    if (found) {
+        remove("product.bin");             // Delete old file
+        rename("temp.bin", "product.bin"); // Rename temp to original
+    } else {
+        printf("product'%s' not found.\n", target_name);
+        remove("temp.bin"); // Clean up temp file if nothing changed
+    }
 }
+
+
 void print_product()
 {
     printf("\n[Modify customer not implemented yet]");
